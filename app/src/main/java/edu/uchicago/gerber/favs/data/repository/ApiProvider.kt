@@ -8,16 +8,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiProvider {
 
-    fun booksApi(): BooksApi {
-        return Retrofit.Builder()
-            .baseUrl(Constants.googleUrl)
-            //add a client allows us to intercept the network traffic
-            .client(getOkHttpClient())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(BooksApi::class.java)
-    }
-
 
     private fun getOkHttpClient() = OkHttpClient.Builder().addInterceptor(getLoggingInterceptor()).build()
 
