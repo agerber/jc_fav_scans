@@ -10,7 +10,7 @@ import com.google.accompanist.navigation.animation.composable
 import edu.uchicago.gerber.favs.presentation.screens.contact.ContactScreen
 import edu.uchicago.gerber.favs.presentation.screens.details.DetailsScreen
 import edu.uchicago.gerber.favs.presentation.screens.favorites.FavoritesScreen
-import edu.uchicago.gerber.favs.presentation.screens.scan.SearchScreen
+import edu.uchicago.gerber.favs.presentation.screens.scan.ScanScreen
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -20,7 +20,7 @@ fun Navigation(
 
     AnimatedNavHost(navController, startDestination = Screen.Search.route) {
         composable(Screen.Search.route) {
-            SearchScreen(navController)
+            ScanScreen(navController)
         }
         composable(Screen.Favorites.route) {
             FavoritesScreen(navController)
