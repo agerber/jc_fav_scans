@@ -11,16 +11,19 @@ import edu.uchicago.gerber.favs.presentation.screens.contact.ContactScreen
 import edu.uchicago.gerber.favs.presentation.screens.details.DetailsScreen
 import edu.uchicago.gerber.favs.presentation.screens.favorites.FavoritesScreen
 import edu.uchicago.gerber.favs.presentation.screens.scan.ScanScreen
+import edu.uchicago.gerber.favs.presentation.viewmodels.PokemonViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun Navigation(
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: PokemonViewModel = viewModel()
 ) {
 
     AnimatedNavHost(navController, startDestination = Screen.Search.route) {
         composable(Screen.Search.route) {
-            ScanScreen(navController)
+            ScanScreen(navController, viewModel)
         }
         composable(Screen.Favorites.route) {
             FavoritesScreen(navController)
@@ -37,7 +40,7 @@ fun Navigation(
             exitTransition = {
                 slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(300))
             },) {
-            DetailsScreen()
+            DetailsScreen(navController, viewModel)
         }
     }
 }
