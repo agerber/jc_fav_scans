@@ -54,6 +54,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewmodel.compose.viewModel
+import edu.uchicago.gerber.favs.presentation.navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalPermissionsApi::class)
 @Composable
@@ -172,7 +173,10 @@ fun ScanScreen(
                                 overlay.setOnButtonClickListener(object :
                                     OverlayView.OnLabelClickListener {
                                     override fun onLabelClicked(name: String) {
-
+                                        //set the name to the viewModel
+                                        pokemonViewModel.setName(name)
+                                        //navigate to the Detail screen
+                                        navController.navigate(Screen.Detail.route)
                                     }
                                 })
                                 var imageRotationDegrees = 0
