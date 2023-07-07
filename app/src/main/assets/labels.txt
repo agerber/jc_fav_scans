@@ -1,10 +1,10 @@
-0 charizard
-1 gengar
-2 arcanine
-3 bulbasaur
-4 blaziken
-5 umbreon
-6 lucario
-7 gardevoir
-8 eevee
-9 dragonite
+charizard
+gengar
+arcanine
+bulbasaur
+blaziken
+umbreon
+lucario
+gardevoir
+eevee
+dragonite
