@@ -77,6 +77,8 @@ fun ScanScreen(
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
+    lateinit var overlay: OverlayView
+
 
     Scaffold(
         modifier = Constants.modifier,
@@ -154,6 +156,15 @@ fun ScanScreen(
                                     it.findViewById<PreviewView>(R.id.view_finder)
                                 val progress =
                                     it.findViewById<ContentLoadingProgressBar>(R.id.progress_circular)
+                                overlay =
+                                    it.findViewById(R.id.overlay)
+
+                                overlay.setOnButtonClickListener(object :
+                                    OverlayView.OnLabelClickListener {
+                                    override fun onLabelClicked(name: String) {
+
+                                    }
+                                })
                                 var imageRotationDegrees = 0
 
                                 classifier = ImageClassificationHelper(
@@ -284,7 +295,7 @@ fun ScanScreen(
                                             results: List<ImageClassificationHelper.Recognition>?,
                                             inferenceTime: Long
                                         ) {
-                                            // TODO: display the result on screen
+                                            overlay.setResults(results)
                                             infTime = inferenceTime
                                         }
 
