@@ -9,4 +9,6 @@ object Constants {
 
     val modifier = Modifier.padding(paddingValues = PaddingValues(all = 0.dp))
 
+    const val pokemonAPIBaseURL = "https://pokeapi.co/api/v2/"
+
 }

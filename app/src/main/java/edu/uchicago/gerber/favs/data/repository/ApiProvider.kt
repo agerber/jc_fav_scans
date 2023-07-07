@@ -8,6 +8,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiProvider {
 
+    fun pokemonApi(): PokemonApi {
+        return Retrofit.Builder()
+            .baseUrl(Constants.pokemonAPIBaseURL)
+            //add a client allows us to intercept the network traffic
+            .client(getOkHttpClient())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(PokemonApi::class.java)
+    }
 
     private fun getOkHttpClient() = OkHttpClient.Builder().addInterceptor(getLoggingInterceptor()).build()
 
