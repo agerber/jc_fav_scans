@@ -10,7 +10,7 @@ import com.google.accompanist.navigation.animation.composable
 import edu.uchicago.gerber.favs.presentation.screens.contact.ContactScreen
 import edu.uchicago.gerber.favs.presentation.screens.details.DetailsScreen
 import edu.uchicago.gerber.favs.presentation.screens.favorites.FavoritesScreen
-import edu.uchicago.gerber.favs.presentation.screens.search.SearchScreen
+import edu.uchicago.gerber.favs.presentation.screens.scan.SearchScreen
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable

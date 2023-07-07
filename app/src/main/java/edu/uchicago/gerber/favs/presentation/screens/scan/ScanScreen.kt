@@ -1,4 +1,4 @@
-package edu.uchicago.gerber.favs.presentation.screens.search
+package edu.uchicago.gerber.favs.presentation.screens.scan
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
