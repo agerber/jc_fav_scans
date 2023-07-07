@@ -21,8 +21,8 @@ fun Navigation(
     viewModel: PokemonViewModel = viewModel()
 ) {
 
-    AnimatedNavHost(navController, startDestination = Screen.Search.route) {
-        composable(Screen.Search.route) {
+    AnimatedNavHost(navController, startDestination = Screen.Scan.route) {
+        composable(Screen.Scan.route) {
             ScanScreen(navController, viewModel)
         }
         composable(Screen.Favorites.route) {

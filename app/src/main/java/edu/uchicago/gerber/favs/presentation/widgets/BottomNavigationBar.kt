@@ -16,7 +16,7 @@ import edu.uchicago.gerber.favs.presentation.navigation.Screen
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     val tabs = listOf(
-        Screen.Search,
+        Screen.Scan,
         Screen.Favorites,
         Screen.Contact
     )
