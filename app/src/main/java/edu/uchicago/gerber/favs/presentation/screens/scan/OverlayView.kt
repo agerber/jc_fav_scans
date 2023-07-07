@@ -26,6 +26,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import androidx.compose.runtime.State
 import androidx.core.content.ContextCompat
 import edu.uchicago.gerber.favs.R
 
@@ -50,7 +51,7 @@ class OverlayView(
 
     var onLabelClickListener: OnLabelClickListener? = null
 
-    private var confidenceThr = 75
+    private lateinit var confidenceThr: State<Int>
 
     init {
         initPaints()
@@ -130,7 +131,7 @@ class OverlayView(
         val textHeight = bounds.height().toFloat()
         val textX = (measuredX - textWidth) / 2
 
-        if (confidence > (confidenceThr.toFloat() / 100)){
+        if (confidence > (confidenceThr.value.toFloat() / 100)){
             currentLabel = label
             canvas.drawRect(buttonRect, buttonPaint)
             canvas.drawText(
@@ -154,7 +155,7 @@ class OverlayView(
         invalidate()
     }
 
-    fun setConfidenceThreshold(confidence: Int) {
+    fun setConfidenceThreshold(confidence: State<Int>) {
         confidenceThr = confidence
     }
 

@@ -48,15 +48,18 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
 import edu.uchicago.gerber.favs.R
 import edu.uchicago.gerber.favs.common.Constants
+import edu.uchicago.gerber.favs.presentation.viewmodels.PokemonViewModel
 import edu.uchicago.gerber.favs.presentation.widgets.BottomNavigationBar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalPermissionsApi::class)
 @Composable
 fun ScanScreen(
     navController: NavController,
+    pokemonViewModel: PokemonViewModel = viewModel()
 ) {
 
     val cameraPermissionState = rememberPermissionState(
@@ -129,17 +132,23 @@ fun ScanScreen(
                             ) {
                                 NavigationDrawer(
                                     // will make it dynamic in the other steps
-                                    confidence = 75,
+                                    confidence = pokemonViewModel.confidence.value,
                                     inferenceTime = infTime,
                                     delegate = delegate,
                                     onAddCon = {
-                                        // To be implemented
+                                        if (pokemonViewModel.confidence.value < 95) {
+                                            pokemonViewModel.setConfidence(pokemonViewModel.confidence.value + 5)
+                                        }
                                     },
                                     onSubtractCon = {
-                                        // To be implemented
+                                        if (pokemonViewModel.confidence.value > 0) {
+                                            pokemonViewModel.setConfidence(pokemonViewModel.confidence.value - 5)
+                                        }
                                     },
                                     onDelegateChange = {
-                                        // To be implemented
+                                        classifier?.currentDelegate = it
+                                        delegate = it
+                                        classifier?.clear()
                                     }
                                 )
                             }
@@ -159,6 +168,7 @@ fun ScanScreen(
                                 overlay =
                                     it.findViewById(R.id.overlay)
 
+                                overlay.setConfidenceThreshold(pokemonViewModel.confidence)
                                 overlay.setOnButtonClickListener(object :
                                     OverlayView.OnLabelClickListener {
                                     override fun onLabelClicked(name: String) {
